@@ -1,5 +1,5 @@
 FROM base/archlinux:2015.06.01
-MAINTAINER binhex
+MAINTAINER djmattyg007
 
 # additional files
 ##################
@@ -18,16 +18,12 @@ RUN chmod +x /root/*.sh && \
 #####
 
 # set environment variables for user nobody
-ENV HOME /home/nobody
-
 # set environment variable for terminal
-ENV TERM xterm
-
 # set environment variables for language
-ENV LANG en_GB.UTF-8
+ENV HOME=/home/nobody TERM=xterm LANG=en_AU.UTF-8
 
 # additional files
 ##################
 
 # add supervisor configuration file
-ADD setup/supervisor.conf /etc/supervisor.conf
+#ADD setup/supervisor.conf /etc/supervisor.conf

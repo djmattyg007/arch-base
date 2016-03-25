@@ -16,9 +16,9 @@ cat /etc/pacman.d/mirrorlist
 pacman -Syu --ignore filesystem --noconfirm
 
 # set locale
-echo en_GB.UTF-8 UTF-8 > /etc/locale.gen
+echo en_AU.UTF-8 UTF-8 > /etc/locale.gen
 locale-gen
-echo LANG="en_GB.UTF-8" > /etc/locale.conf
+echo LANG="en_AU.UTF-8" > /etc/locale.conf
 
 # add user "nobody" to primary group "users" (will remove any other group membership)
 usermod -g users nobody
@@ -44,11 +44,11 @@ dirmngr </dev/null
 pacman-key --refresh-keys
 
 # force re-install of ncurses 6.x with 5.x backwards compatibility (can be removed onced all apps have switched over to ncurses 6.x)
-curl -o /tmp/ncurses5-compat-libs-6.0-2-x86_64.pkg.tar.xz -L https://github.com/binhex/arch-packages/raw/master/compiled/ncurses5-compat-libs-6.0-2-x86_64.pkg.tar.xz
-pacman -U /tmp/ncurses5-compat-libs-6.0-2-x86_64.pkg.tar.xz --noconfirm
+#curl -o /tmp/ncurses5-compat-libs-6.0-2-x86_64.pkg.tar.xz -L https://github.com/binhex/arch-packages/raw/master/compiled/ncurses5-compat-libs-6.0-2-x86_64.pkg.tar.xz
+#pacman -U /tmp/ncurses5-compat-libs-6.0-2-x86_64.pkg.tar.xz --noconfirm
 
 # install additional packages
-pacman -S supervisor nano vi --noconfirm
+#pacman -S supervisor nano vi --noconfirm
 
 # cleanup
 yes|pacman -Scc
