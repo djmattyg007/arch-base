@@ -13,3 +13,5 @@ build_runit() {
     su -c 'cd /tmp/runit && makepkg' - makepkg-user
     pacman -U "/tmp/runit-*-x86_64.pkg.tar.xz" --noconfirm
 }
+
+build_runit
