@@ -29,11 +29,11 @@ aur_build() {
 
     # Download and extract package files from AUR
     local tar_path="/tmp/${pkg}.tar.gz"
-    curl -L -o ${tar_path} "https://aur.archlinux.org/cgit/aur.git/snapshot/${pkg}.tar.gz"
+    curl -s -L -o ${tar_path} "https://aur.archlinux.org/cgit/aur.git/snapshot/${pkg}.tar.gz"
     tar xvf ${tar_path} -C /tmp
     chmod a+rwx /tmp/${pkg}
 
     # Build and install package
     su -c "cd /tmp/${pkg} && makepkg" - makepkg-user
-    pacman -U "/tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz" --noconfirm
+    pacman -U /tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz --noconfirm
 }
