@@ -8,6 +8,7 @@ build_runit() {
     local tar_path="/tmp/runit.tar.gz"
     curl -L -o ${tar_path} "https://aur.archlinux.org/cgit/aur.git/snapshot/runit.tar.gz"
     tar xvf ${tar_path} -C /tmp
+    chmod a+rwx /tmp/runit
 
     # Build and install runit
     su -c 'cd /tmp/runit && makepkg' - makepkg-user

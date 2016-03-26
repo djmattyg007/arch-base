@@ -9,6 +9,7 @@ source /root/pacman-init.sh
 # Create nobody user
 source /root/user-init.sh
 
+# Install any packages
 source /root/aur.sh
 aur_start
 source /root/aur_runit.sh
