@@ -1,14 +1,17 @@
 FROM base/archlinux:2015.06.01
 MAINTAINER djmattyg007
 
-# add install bash script
+# Add install bash script
 ADD setup/root/*.sh /root/
 
-# run bash script to update base image, set locale, install supervisor and cleanup
+# Run bash script to update base image, set locale, install runit and cleanup
 RUN chmod +x /root/*.sh && \
-	/bin/bash /root/install.sh
+    /bin/bash /root/install.sh && \
+    rm /root/*.sh
 
-# set environment variable for user nobody
-# set environment variable for terminal
-# set environment variable for language
+# Set environment variables for the nobody user's home directory, the terminal
+# and the language.
 ENV HOME=/home/nobody TERM=xterm LANG=en_AU.UTF-8
+
+ADD runsvinit /
+ENTRYPOINT ["/runsvinit"]

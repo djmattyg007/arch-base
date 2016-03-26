@@ -12,4 +12,4 @@ Arch Linux base image using image from Docker Hub https://hub.docker.com/r/base/
 
 **Notes**
 
-This is a fork of binhex/arch-base that comes without supervisor.
+This is a fork of binhex/arch-base that comes with runit instead of supervisor.
