@@ -5,7 +5,8 @@ set -e
 
 aur_start() {
     # Install packages that all PKGBUILDs automatically assume are installed
-    pacman -S --needed --noconfirm base-devel
+    # Also install ed, it's a build-time dependency of runit
+    pacman -S --needed --noconfirm base-devel ed
     # Create "makepkg-user" user for building packages, as we can't and shouldn't
     # build packages as root (although we're effectively root all the time when
     # interacting with docker, so it's a bit of a moot point...)
@@ -19,4 +20,20 @@ aur_finish() {
     userdel -r makepkg-user
     # Remove base-devel packages, except a few useful core packages
     pacman -Ru --noconfirm $(pacman -Qgq base-devel | grep -v pacman | grep -v sed | grep -v grep | grep -v gzip)
+    # Remove ed
+    pacman -Ru --noconfirm ed
+}
+
+aur_build() {
+    local pkg=$1
+
+    # Download and extract package files from AUR
+    local tar_path="/tmp/${pkg}.tar.gz"
+    curl -L -o ${tar_path} "https://aur.archlinux.org/cgit/aur.git/snapshot/${pkg}.tar.gz"
+    tar xvf ${tar_path} -C /tmp
+    chmod a+rwx /tmp/${pkg}
+
+    # Build and install package
+    su -c "cd /tmp/${pkg} && makepkg" - makepkg-user
+    pacman -U "/tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz" --noconfirm
 }
