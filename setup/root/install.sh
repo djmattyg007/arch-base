@@ -16,6 +16,8 @@ aur_build runit
 aur_finish
 
 mkdir -p /etc/service
+unlink /etc/runit/runsvdir/current
+ln -s /etc/service /etc/runit/runsvdir/current
 
 # Cleanup
 source /root/pacman-cleanup.sh
