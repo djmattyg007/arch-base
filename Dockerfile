@@ -1,7 +1,7 @@
 FROM base/archlinux:2015.06.01
 MAINTAINER djmattyg007
 
-ENV BASEIMAGE_VERSION=2016.03.27
+ENV BASEIMAGE_VERSION=2016.03.27-2
 
 # Add install bash script
 ADD setup/root/*.sh /root/

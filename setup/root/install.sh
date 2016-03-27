@@ -15,5 +15,7 @@ aur_start
 aur_build runit
 aur_finish
 
+mkdir -p /etc/service
+
 # Cleanup
 source /root/pacman-cleanup.sh
