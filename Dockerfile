@@ -1,10 +1,10 @@
 FROM base/archlinux:2015.06.01
 MAINTAINER djmattyg007
 
-ENV BASEIMAGE_VERSION=2016.03.27-2
+ENV BASEIMAGE_VERSION=2016.03.27-3
 
 # Add install bash script
-ADD setup/root/*.sh /root/
+COPY setup/root/*.sh /root/
 
 # Run bash script to update base image, set locale, install runit and cleanup
 RUN chmod +x /root/*.sh && \
@@ -15,5 +15,5 @@ RUN chmod +x /root/*.sh && \
 # and the language
 ENV HOME=/home/nobody TERM=xterm LANG=en_AU.UTF-8
 
-ADD runsvinit /
+COPY runsvinit /
 ENTRYPOINT ["/runsvinit"]

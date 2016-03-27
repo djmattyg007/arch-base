@@ -12,7 +12,6 @@ aur_start() {
     # interacting with docker, so it's a bit of a moot point...)
     useradd -m -s /bin/bash makepkg-user
     echo -e "makepkg-password\nmakepkg-password" | passwd makepkg-user
-    #echo "makepkg-user ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
 }
 
 aur_finish() {
