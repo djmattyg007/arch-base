@@ -1,7 +1,7 @@
 FROM base/archlinux:2015.06.01
 MAINTAINER djmattyg007
 
-ENV BASEIMAGE_VERSION=2016.04.06-1
+ENV BASEIMAGE_VERSION=2016.04.06-2
 
 # Add install bash script
 COPY setup/root/*.sh /root/
@@ -14,5 +14,5 @@ RUN /root/install.sh && \
 # and the language
 ENV HOME=/home/nobody TERM=xterm LANG=en_AU.UTF-8
 
-COPY runsvinit /
-ENTRYPOINT ["/runsvinit"]
+COPY runsvinit /usr/bin/init
+ENTRYPOINT ["/usr/bin/init"]
