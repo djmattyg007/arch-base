@@ -26,7 +26,7 @@ pacman-db-upgrade
 # Delete any local keys
 rm -rf /root/.gnupg
 
-# Force re-creation of /root/.gnupg and start dirmgr
+# Force re-creation of /root/.gnupg and start dirmngr
 dirmngr < /dev/null
 
 # Refresh PGP keys for pacman
