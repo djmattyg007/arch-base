@@ -3,6 +3,13 @@
 # Exit script if return code != 0
 set -e
 
+pacman_cleanup() {
+    yes | pacman -Scc
+    rm -rf /usr/share/locale/*
+    rm -rf /usr/share/man/*
+    rm -rf /tmp/*
+}
+
 aur_start() {
     # Install packages that all PKGBUILDs automatically assume are installed
     # Also install ed, it's a build-time dependency of runit
