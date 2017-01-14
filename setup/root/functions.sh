@@ -41,5 +41,11 @@ aur_build() {
 
     # Build and install package
     su -c "cd /tmp/${pkg} && makepkg --nocolor" - makepkg-user
-    pacman -U /tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz --noconfirm --noprogressbar --color=never
+
+    pkg_filename=$(ls --color=never -1 /tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz 2> /dev/null)
+    if [[ -n "${pkg_filename}" ]]; then
+        pacman -U /tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz --noconfirm --noprogressbar --color=never
+    else
+        pacman -U /tmp/${pkg}/${pkg}-*-any.pkg.tar.xz --noconfirm --noprogressbar --color=never
+    fi
 }
