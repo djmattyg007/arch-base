@@ -11,6 +11,7 @@ pacman_cleanup() {
 }
 
 aur_start() {
+    echo "Preparing to build AUR packages"
     # Install packages that all PKGBUILDs automatically assume are installed
     # Also install ed, it's a build-time dependency of runit
     pacman -S --needed --noconfirm --noprogressbar --color=never base-devel ed
@@ -22,6 +23,7 @@ aur_start() {
 }
 
 aur_finish() {
+    echo "Finished building AUR packages"
     # Remove "makepkg-user" - we don't want unnecessary users lying around in the image
     userdel -r makepkg-user
     # Remove base-devel packages, except a few useful core packages
@@ -39,10 +41,11 @@ aur_build() {
     tar xvf ${tar_path} -C /tmp
     chmod a+rwx /tmp/${pkg}
 
-    # Build and install package
-    su -c "cd /tmp/${pkg} && makepkg --nocolor" - makepkg-user
+    echo "Building ${pkg}"
+    su -c "cd /tmp/${pkg} && makepkg --nocolor --noprogressbar" - makepkg-user
 
-    pkg_filename=$(ls --color=never -1 /tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz 2> /dev/null)
+    echo "Installing ${pkg}"
+    pkg_filename=$(ls --color=never -1 /tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz 2> /dev/null || true)
     if [[ -n "${pkg_filename}" ]]; then
         pacman -U /tmp/${pkg}/${pkg}-*-x86_64.pkg.tar.xz --noconfirm --noprogressbar --color=never
     else
