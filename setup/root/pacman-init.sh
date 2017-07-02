@@ -27,10 +27,11 @@ dirmngr < /dev/null
 # Refresh PGP keys for pacman
 pacman-key --refresh-keys --nocolor
 
-echo "Update installed packages"
+echo "Preparing to update installed packages"
 pacman -Sy --noconfirm --noprogressbar --color=never
-# Update archlinux-keyring and pacman first, to ensure hooks run and keys are up to date
-pacman -S --noconfirm --noprogressbar --color=never archlinux-keyring pacman
+# Update archlinux-keyring, openssl and pacman first, to ensure hooks run and keys are up to date
+pacman -S --noconfirm --noprogressbar --color=never archlinux-keyring openssl pacman
+echo "Updating installed packages"
 # Download all package files first
 pacman -Syuw --noconfirm --noprogressbar --color=never
 # Delete old cert file due to bug in ca-certificates-utils package

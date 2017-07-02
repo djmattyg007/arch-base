@@ -1,7 +1,7 @@
 FROM binhex/arch-scratch:20160611-01
 MAINTAINER djmattyg007
 
-ENV BASEIMAGE_VERSION=2017.07.02-2
+ENV BASEIMAGE_VERSION=2017.07.03-1
 
 # Add install bash script
 COPY setup/root/*.sh /root/
