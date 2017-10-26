@@ -4,7 +4,7 @@
 set -e
 
 # Configure pacman with snapshot repository
-echo "Prepare pacman to use snapshot repository, refresh keys, upgrade system"
+echo "Upgrade system, install additional core packages"
 source /root/pacman-init.sh
 
 source /root/functions.sh

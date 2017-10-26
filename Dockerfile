@@ -1,12 +1,12 @@
-FROM binhex/arch-scratch:20160611-01
+FROM archlinux/base:latest
 MAINTAINER djmattyg007
 
-ENV BASEIMAGE_VERSION=2017.10.24-1
+ENV BASEIMAGE_VERSION=2017.10.27-1
 
 # Add install bash script
 COPY setup/root/*.sh /root/
 
-# Run bash script to update base image, set locale, install runit and cleanup
+# Run bash script to update base image, install important additional packages, set locale and clean up
 RUN /root/install.sh && \
     rm -f /root/install.sh /root/pacman-init.sh
 

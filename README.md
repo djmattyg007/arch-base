@@ -8,8 +8,8 @@ Arch Linux is an independently developed, i686/x86-64 general purpose GNU/Linux 
 
 **Build notes**
 
-Arch Linux base image using image from Docker Hub https://hub.docker.com/r/binhex/arch-scratch/. This image is set to a snapshot by using the archive.archlinux.org website for package updates, this is required to reduce image size by preventing continual updates to packages.
+This image is based off of the official Arch Linux docker image found at https://hub.docker.com/r/archlinux/base/.
 
 **Notes**
 
-This is a fork of binhex/arch-base. This version no longer comes with runit - see djmattyg007/arch-runit-base for base image with runit.
+This used to be a fork of binhex/arch-base. It also used to come with runit - see djmattyg007/arch-runit-base for a base image with runit.
